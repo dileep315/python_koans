@@ -18,7 +18,13 @@
 #
 def triangle(a, b, c):
     # DELETE 'PASS' AND WRITE THIS CODE
-    pass
+    lengthSet = {a, b, c}
+    if len(lengthSet) == 1:
+        return 'equilateral'
+    elif len(lengthSet) == 2:
+        return 'isosceles'
+    else:
+        return 'scalene'
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
