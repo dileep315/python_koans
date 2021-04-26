@@ -34,7 +34,37 @@ from runner.koan import *
 
 def score(dice):
     # You need to write this method
-    pass
+    if len(dice) == 0:
+        return 0
+
+    sorted_dice = sorted(dice)
+    set_of_three_number = None
+    three_start_index = -1
+    three_end_index = -1
+    for i in range(0, len(sorted_dice)):
+        if ((i + 2) <= (len(sorted_dice) - 1)) and sorted_dice[i] == sorted_dice[i + 1] == sorted_dice[i + 2]:
+            set_of_three_number = sorted_dice[i]
+            three_start_index = i
+            three_end_index = i + 2
+
+    score = 0
+    if set_of_three_number is not None:
+        if set_of_three_number is 1:
+            score += 1000
+        else:
+            score += set_of_three_number*100
+
+    for i in range(0, len(sorted_dice)):
+        if three_start_index <= i <= three_end_index:
+            continue
+        elif sorted_dice[i] == 1:
+            score += 100
+        elif sorted_dice[i] == 5:
+            score += 50
+        else:
+           score += 0
+
+    return score
 
 class AboutScoringProject(Koan):
     def test_score_of_an_empty_list_is_zero(self):
