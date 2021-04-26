@@ -18,6 +18,10 @@
 #
 def triangle(a, b, c):
     # DELETE 'PASS' AND WRITE THIS CODE
+    if a <= 0 or b <= 0 or c <= 0:
+        raise TriangleError("all sides must be greater than zero")
+    if a + b < c or a + c < b or b + c < a:
+        raise TriangleError("Sum of any two sides must be greater than the third side")
     lengthSet = {a, b, c}
     if len(lengthSet) == 1:
         return 'equilateral'
@@ -25,6 +29,7 @@ def triangle(a, b, c):
         return 'isosceles'
     else:
         return 'scalene'
+
 
 # Error class used in part 2.  No need to change this code.
 class TriangleError(Exception):
